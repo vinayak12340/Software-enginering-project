@@ -1,0 +1,490 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.brand-icon {
+    background: #2563eb;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.brand h1 {
+    font-size: 24px;
+    color: #1e3a8a;
+}
+
+.login-heading {
+    margin-bottom: 28px;
+}
+
+.login-heading h2 {
+    font-size: 27px;
+    margin-bottom: 9px;
+}
+
+.login-heading p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: #2563eb;
+}
+
+#loginBtn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#loginBtn:hover {
+    background: #1d4ed8;
+}
+
+#loginBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.login-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.dashboard-header {
+    background: #1e3a8a;
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-header button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: white;
+    color: #1e3a8a;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.dashboard-container {
+    padding: 40px 5%;
+}
+
+.dashboard-container > h1 {
+    margin-bottom: 10px;
+}
+
+#adminName {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.stat-card h3 {
+    color: #64748b;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+    color: #2563eb;
+}
+
+.equipment-section {
+    background: white;
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 12px;
+}
+
+@media (max-width: 700px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+#addEquipmentBtn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+#searchEquipment {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+th, td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background: #f8fafc;
+    color: #475569;
+}
+
+@media (max-width: 600px) {
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#closeModal {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+#equipmentForm label {
+    display: block;
+    margin: 14px 0 7px;
+    font-weight: 600;
+}
+
+#equipmentForm input,
+#equipmentForm select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
+
+#saveEquipmentBtn {
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.edit-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.delete-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    opacity: 0.85;
+}
+
+.qr-content {
+    text-align: center;
+}
+
+#qrCodeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: 15px auto;
+    background: white;
+    border-radius: 8px;
+}
+
+#qrCodeContainer img {
+    display: block;
+    margin: auto;
+}
+
+#qrCodeContainer canvas {
+    display: block;
+    margin: auto;
+}
+
+.qr-btn {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 4px;
+}
+
+#downloadQrBtn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* QR Scanner Styling */
+
+.scanner-btn {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.scanner-content {
+    text-align: center;
+}
+
+#qr-reader {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+#scannerStatus {
+    color: #64748b;
+    margin: 12px 0;
+}
+
+#scanResult {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.scan-result-card {
+    background: #f1f5f9;
+    padding: 16px;
+    border-radius: 9px;
+    line-height: 1.8;
+}
+
+#stopScannerBtn {
+    width: 100%;
+    background: #dc2626;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Student Approval Section */
+
+.student-approval-section {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.section-heading h2 {
+    margin-bottom: 5px;
+}
+
+.section-heading p {
+    color: #64748b;
+    margin-top: 0;
+}
+
+.approval-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#pendingStudentCount {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.approve-student-btn {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.reject-student-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#loginRole {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background-color: white;
+    color: #1e293b;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#loginRole:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}

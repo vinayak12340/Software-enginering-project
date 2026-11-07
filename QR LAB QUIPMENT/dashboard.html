@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | LabTrack</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+        <h2>LabTrack</h2>
+        <button id="logoutBtn">Logout</button>
+    </header>
+
+    <main class="dashboard-container">
+
+        <h1>Admin Dashboard</h1>
+        <p id="adminName">Loading administrator...</p>
+
+        <section class="stats-container">
+
+
+            <div class="stat-card">
+                <h3>Total Equipment</h3>
+                <h2 id="totalEquipment">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Available</h3>
+                <h2 id="availableEquipment">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Borrowed</h3>
+                <h2 id="borrowedEquipment">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <h3>Maintenance</h3>
+                <h2 id="maintenanceEquipment">0</h2>
+            </div>
+            <div class="stat-card">
+    <h3>Overdue</h3>
+    <h2 id="overdueEquipment">0</h2>
+</div>
+        </section>
+      
+<!-- Student Approval Section -->
+<section class="student-approval-section">
+
+    <div class="section-heading">
+        <div>
+            <h2>Student Management</h2>
+            <p>Review and manage student registrations.</p>
+        </div>
+    </div>
+
+    <div class="approval-stats">
+        <h3>Pending Student Requests</h3>
+        <span id="pendingStudentCount">0 Pending</span>
+    </div>
+
+    <div class="table-container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Registration Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="pendingStudentsTable">
+                <tr>
+                    <td colspan="4">
+                        Loading student requests...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</section>
+
+        <section class="equipment-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Equipment Management</h2>
+            <p>Manage your laboratory inventory.</p>
+        </div>
+
+        <button id="addEquipmentBtn">
+            + Add Equipment
+        </button>
+    </div>
+
+    <input
+        type="text"
+        id="searchEquipment"
+        placeholder="Search equipment by name or ID..."
+    >
+
+    <div class="table-container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipment ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Location</th>
+                    <th>Condition</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="equipmentTable">
+                <tr>
+                    <td colspan="7">No equipment registered yet.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+<button id="openScannerBtn" class="scanner-btn">
+    Scan QR Code
+</button>
+
+</section>
+```html
+<!-- Active Borrowings Section -->
+
+<section class="equipment-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Active Borrowings</h2>
+            <p>Track issued equipment and process returns.</p>
+        </div>
+    </div>
+
+    <div class="table-container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipment ID</th>
+                    <th>Equipment Name</th>
+                    <th>Student Name</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="activeBorrowingsTable">
+                <tr>
+                    <td colspan="7">Loading active borrowings...</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+```
+<!-- Maintenance Management Section -->
+
+<section class="equipment-section">
+
+    <div class="section-header">
+        <div>
+            <h2>Maintenance Management</h2>
+            <p>Track damaged equipment and maintenance activities.</p>
+        </div>
+        <button id="reportMaintenanceBtn">
+        + Report Maintenance
+    </button>
+    </div>
+
+    <div class="table-container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Equipment ID</th>
+                    <th>Equipment Name</th>
+                    <th>Issue Description</th>
+                    <th>Report Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="maintenanceTable">
+                <tr>
+                    <td colspan="6">No maintenance records found.</td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+<!-- Report Maintenance Modal -->
+
+<div id="maintenanceModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Report Maintenance Issue</h2>
+            <button type="button" id="closeMaintenanceModal">×</button>
+        </div>
+
+        <form id="maintenanceForm">
+
+            <label>Select Equipment</label>
+            <select id="maintenanceEquipmentSelect" required></select>
+                <option value="">Select Equipment</option>
+            </select>
+
+            <label>Issue Description</label>
+            <textarea
+                id="maintenanceDescription"
+                placeholder="Describe the equipment problem..."
+                rows="4"
+                required
+            ></textarea>
+
+            <label>Report Date</label>
+            <input type="date" id="maintenanceDate" required>
+
+            <p id="maintenanceMessage"></p>
+
+            <button type="submit" id="saveMaintenanceBtn">
+                Submit Report
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- Add Equipment Modal -->
+
+<div id="equipmentModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Add New Equipment</h2>
+            <button type="button" id="closeModal">×</button>
+        </div>
+
+        <form id="equipmentForm">
+
+            <label>Equipment ID</label>
+            <input type="text" id="equipmentId"
+                   placeholder="Example: LAB001" required>
+
+            <label>Equipment Name</label>
+            <input type="text" id="equipmentName"
+                   placeholder="Example: Microscope" required>
+
+            <label>Category</label>
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option>Computer</option>
+                <option>Electronics</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+                <option>Other</option>
+            </select>
+
+            <label>Location</label>
+            <input type="text" id="location"
+                   placeholder="Example: Lab 101" required>
+
+            <label>Condition</label>
+            <select id="condition" required>
+                <option value="">Select Condition</option>
+                <option>Good</option>
+                <option>Fair</option>
+                <option>Damaged</option>
+            </select>
+
+            <button type="submit" id="saveEquipmentBtn">
+                Save Equipment
+            </button>
+
+            <p id="equipmentMessage"></p>
+
+        </form>
+
+    </div>
+
+</div>
+
+    </main>
+    <div id="qrModal" class="modal">
+
+    <div class="modal-content qr-content">
+
+        <div class="modal-header">
+            <h2>Equipment QR Code</h2>
+            <button type="button" id="closeQrModal">×</button>
+        </div>
+
+        <h3 id="qrEquipmentName"></h3>
+        <p id="qrEquipmentId"></p>
+
+        <div id="qrCodeContainer"></div>
+
+        <button type="button" id="downloadQrBtn">
+            Download QR Code
+        </button>
+
+    </div>
+
+</div>
+  
+<!-- Issue Equipment Modal -->
+
+<div id="issueModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h2>Issue Equipment</h2>
+
+            <button type="button" id="closeIssueModal">×</button>
+        </div>
+
+        <form id="issueForm">
+
+            <input type="hidden" id="issueEquipmentDocId">
+
+            <div class="form-group">
+                <label>Equipment ID</label>
+                <input type="text" id="issueEquipmentId" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Equipment Name</label>
+                <input type="text" id="issueEquipmentName" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="issueStudent">Select Student</label>
+
+                <select id="issueStudent" required>
+                    <option value="">Loading students...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="issueDate">Issue Date</label>
+                <input type="date" id="issueDate" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dueDate">Due Date</label>
+                <input type="date" id="dueDate" required>
+            </div>
+
+            <p id="issueMessage"></p>
+
+            <button type="submit" id="confirmIssueBtn">
+                Confirm Issue
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+   
+<!-- QR Scanner Modal -->
+<div id="scannerModal" class="modal">
+
+    <div class="modal-content scanner-content">
+
+        <div class="modal-header">
+            <h2>Equipment QR Scanner</h2>
+            <button type="button" id="closeScannerBtn">×</button>
+        </div>
+
+        <p>Position the equipment QR code inside the camera.</p>
+
+        <div id="qr-reader"></div>
+
+        <p id="scannerStatus">Camera is not started.</p>
+
+        <div id="scanResult"></div>
+
+        <button type="button" id="stopScannerBtn">
+            Stop Scanner
+        </button>
+
+    </div>
+
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+ 
+</body>
+</html>

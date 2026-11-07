@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LabTrack | Student Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="dashboard-header">
+
+        <h2>LabTrack</h2>
+
+        <button id="logoutBtn" type="button">
+            Logout
+        </button>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- Welcome Section -->
+        <section class="dashboard-heading">
+
+            <h1>Student Dashboard</h1>
+
+            <p id="studentName">Welcome, Student</p>
+
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-container">
+
+            <div class="stat-card">
+                <p>Total Equipment</p>
+                <h2 id="totalEquipment">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Available Equipment</p>
+                <h2 id="availableEquipment">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>Borrowed Equipment</p>
+                <h2 id="borrowedEquipment">0</h2>
+            </div>
+
+        </section>
+
+        <!-- Equipment Inventory -->
+        <section class="equipment-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Laboratory Equipment</h2>
+                    <p>Explore available laboratory equipment.</p>
+                </div>
+            </div>
+
+            <input
+                type="text"
+                id="searchEquipment"
+                placeholder="Search equipment by name or ID..."
+            >
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Equipment ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Condition</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="equipmentTable">
+
+                        <tr>
+                            <td colspan="7">Loading equipment...</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Student QR Scanner -->
+        <section class="equipment-section">
+
+            <h2>Equipment QR Scanner</h2>
+
+            <p>Scan an equipment QR code to view its details.</p>
+
+            <button id="openScannerBtn" type="button">
+                Scan QR Code
+            </button>
+
+        </section>
+
+        <!-- Equipment Request Section -->
+        <section class="equipment-section">
+
+            <h2>My Equipment Requests</h2>
+
+            <p>Track your equipment borrowing requests.</p>
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Request Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="myRequestsTable">
+
+                        <tr>
+                            <td colspan="3">No requests yet.</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- QR Scanner Modal -->
+    <div id="scannerModal" class="modal">
+
+        <div class="modal-content scanner-content">
+
+            <div class="modal-header">
+
+                <h2>Equipment QR Scanner</h2>
+
+                <button type="button" id="closeScannerBtn">×</button>
+
+            </div>
+
+            <p>Position the equipment QR code inside the camera.</p>
+
+            <div id="qr-reader"></div>
+
+            <p id="scannerStatus">Camera is not started.</p>
+
+            <div id="scanResult"></div>
+
+            <button type="button" id="stopScannerBtn">
+                Stop Scanner
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+    <script type="module" src="js/student.js"></script>
+
+</body>
+
+</html>
